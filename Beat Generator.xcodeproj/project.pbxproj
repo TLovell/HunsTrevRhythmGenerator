@@ -1,0 +1,426 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E727C1F01BC55EBF00BB54B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E727C1EF1BC55EBF00BB54B1 /* AppDelegate.swift */; };
+		E727C1F21BC55EBF00BB54B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E727C1F11BC55EBF00BB54B1 /* ViewController.swift */; };
+		E727C1F51BC55EBF00BB54B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E727C1F31BC55EBF00BB54B1 /* Main.storyboard */; };
+		E727C1F71BC55EBF00BB54B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E727C1F61BC55EBF00BB54B1 /* Images.xcassets */; };
+		E727C1FA1BC55EBF00BB54B1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E727C1F81BC55EBF00BB54B1 /* LaunchScreen.xib */; };
+		E727C2061BC55EBF00BB54B1 /* Beat_GeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E727C2051BC55EBF00BB54B1 /* Beat_GeneratorTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E727C2001BC55EBF00BB54B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E727C1E21BC55EBF00BB54B1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E727C1E91BC55EBF00BB54B1;
+			remoteInfo = "Beat Generator";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E727C1EA1BC55EBF00BB54B1 /* Beat Generator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Beat Generator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E727C1EE1BC55EBF00BB54B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E727C1EF1BC55EBF00BB54B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E727C1F11BC55EBF00BB54B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E727C1F41BC55EBF00BB54B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E727C1F61BC55EBF00BB54B1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E727C1F91BC55EBF00BB54B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E727C1FF1BC55EBF00BB54B1 /* Beat GeneratorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Beat GeneratorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E727C2041BC55EBF00BB54B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E727C2051BC55EBF00BB54B1 /* Beat_GeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beat_GeneratorTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E727C1E71BC55EBF00BB54B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E727C1FC1BC55EBF00BB54B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E727C1E11BC55EBF00BB54B1 = {
+			isa = PBXGroup;
+			children = (
+				E727C1EC1BC55EBF00BB54B1 /* Beat Generator */,
+				E727C2021BC55EBF00BB54B1 /* Beat GeneratorTests */,
+				E727C1EB1BC55EBF00BB54B1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E727C1EB1BC55EBF00BB54B1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E727C1EA1BC55EBF00BB54B1 /* Beat Generator.app */,
+				E727C1FF1BC55EBF00BB54B1 /* Beat GeneratorTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E727C1EC1BC55EBF00BB54B1 /* Beat Generator */ = {
+			isa = PBXGroup;
+			children = (
+				E727C1EF1BC55EBF00BB54B1 /* AppDelegate.swift */,
+				E727C1F11BC55EBF00BB54B1 /* ViewController.swift */,
+				E727C1F31BC55EBF00BB54B1 /* Main.storyboard */,
+				E727C1F61BC55EBF00BB54B1 /* Images.xcassets */,
+				E727C1F81BC55EBF00BB54B1 /* LaunchScreen.xib */,
+				E727C1ED1BC55EBF00BB54B1 /* Supporting Files */,
+			);
+			path = "Beat Generator";
+			sourceTree = "<group>";
+		};
+		E727C1ED1BC55EBF00BB54B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E727C1EE1BC55EBF00BB54B1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E727C2021BC55EBF00BB54B1 /* Beat GeneratorTests */ = {
+			isa = PBXGroup;
+			children = (
+				E727C2051BC55EBF00BB54B1 /* Beat_GeneratorTests.swift */,
+				E727C2031BC55EBF00BB54B1 /* Supporting Files */,
+			);
+			path = "Beat GeneratorTests";
+			sourceTree = "<group>";
+		};
+		E727C2031BC55EBF00BB54B1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E727C2041BC55EBF00BB54B1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E727C1E91BC55EBF00BB54B1 /* Beat Generator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E727C2091BC55EBF00BB54B1 /* Build configuration list for PBXNativeTarget "Beat Generator" */;
+			buildPhases = (
+				E727C1E61BC55EBF00BB54B1 /* Sources */,
+				E727C1E71BC55EBF00BB54B1 /* Frameworks */,
+				E727C1E81BC55EBF00BB54B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Beat Generator";
+			productName = "Beat Generator";
+			productReference = E727C1EA1BC55EBF00BB54B1 /* Beat Generator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E727C1FE1BC55EBF00BB54B1 /* Beat GeneratorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E727C20C1BC55EBF00BB54B1 /* Build configuration list for PBXNativeTarget "Beat GeneratorTests" */;
+			buildPhases = (
+				E727C1FB1BC55EBF00BB54B1 /* Sources */,
+				E727C1FC1BC55EBF00BB54B1 /* Frameworks */,
+				E727C1FD1BC55EBF00BB54B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E727C2011BC55EBF00BB54B1 /* PBXTargetDependency */,
+			);
+			name = "Beat GeneratorTests";
+			productName = "Beat GeneratorTests";
+			productReference = E727C1FF1BC55EBF00BB54B1 /* Beat GeneratorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E727C1E21BC55EBF00BB54B1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Trevor Lovell";
+				TargetAttributes = {
+					E727C1E91BC55EBF00BB54B1 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					E727C1FE1BC55EBF00BB54B1 = {
+						CreatedOnToolsVersion = 6.3;
+						TestTargetID = E727C1E91BC55EBF00BB54B1;
+					};
+				};
+			};
+			buildConfigurationList = E727C1E51BC55EBF00BB54B1 /* Build configuration list for PBXProject "Beat Generator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E727C1E11BC55EBF00BB54B1;
+			productRefGroup = E727C1EB1BC55EBF00BB54B1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E727C1E91BC55EBF00BB54B1 /* Beat Generator */,
+				E727C1FE1BC55EBF00BB54B1 /* Beat GeneratorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E727C1E81BC55EBF00BB54B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E727C1F51BC55EBF00BB54B1 /* Main.storyboard in Resources */,
+				E727C1FA1BC55EBF00BB54B1 /* LaunchScreen.xib in Resources */,
+				E727C1F71BC55EBF00BB54B1 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E727C1FD1BC55EBF00BB54B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E727C1E61BC55EBF00BB54B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E727C1F21BC55EBF00BB54B1 /* ViewController.swift in Sources */,
+				E727C1F01BC55EBF00BB54B1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E727C1FB1BC55EBF00BB54B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E727C2061BC55EBF00BB54B1 /* Beat_GeneratorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E727C2011BC55EBF00BB54B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E727C1E91BC55EBF00BB54B1 /* Beat Generator */;
+			targetProxy = E727C2001BC55EBF00BB54B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E727C1F31BC55EBF00BB54B1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E727C1F41BC55EBF00BB54B1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E727C1F81BC55EBF00BB54B1 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E727C1F91BC55EBF00BB54B1 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E727C2071BC55EBF00BB54B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E727C2081BC55EBF00BB54B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E727C20A1BC55EBF00BB54B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Beat Generator/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E727C20B1BC55EBF00BB54B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Beat Generator/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E727C20D1BC55EBF00BB54B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Beat GeneratorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Beat Generator.app/Beat Generator";
+			};
+			name = Debug;
+		};
+		E727C20E1BC55EBF00BB54B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Beat GeneratorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Beat Generator.app/Beat Generator";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E727C1E51BC55EBF00BB54B1 /* Build configuration list for PBXProject "Beat Generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E727C2071BC55EBF00BB54B1 /* Debug */,
+				E727C2081BC55EBF00BB54B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E727C2091BC55EBF00BB54B1 /* Build configuration list for PBXNativeTarget "Beat Generator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E727C20A1BC55EBF00BB54B1 /* Debug */,
+				E727C20B1BC55EBF00BB54B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E727C20C1BC55EBF00BB54B1 /* Build configuration list for PBXNativeTarget "Beat GeneratorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E727C20D1BC55EBF00BB54B1 /* Debug */,
+				E727C20E1BC55EBF00BB54B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E727C1E21BC55EBF00BB54B1 /* Project object */;
+}
