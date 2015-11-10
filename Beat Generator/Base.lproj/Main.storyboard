@@ -120,29 +120,6 @@
                                     <action selector="theTryAgainMethod:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Okz-dg-WTJ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFX-pt-cNh">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <animations/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="PR6-2q-KwC"/>
-                                    <constraint firstAttribute="width" constant="146" id="ZND-79-fUJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="PR6-2q-KwC"/>
-                                        <exclude reference="ZND-79-fUJ"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="PR6-2q-KwC"/>
-                                        <include reference="ZND-79-fUJ"/>
-                                    </mask>
-                                </variation>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGG-Dc-H8g">
                                 <rect key="frame" x="267" y="183" width="67" height="30"/>
                                 <animations/>
@@ -209,6 +186,30 @@
                                     <action selector="theIntensityStepper:" destination="BYZ-38-t0r" eventType="valueChanged" id="oSu-jb-uBq"/>
                                 </connections>
                             </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eFX-pt-cNh">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="PR6-2q-KwC"/>
+                                    <constraint firstAttribute="width" constant="146" id="ZND-79-fUJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="PR6-2q-KwC"/>
+                                        <exclude reference="ZND-79-fUJ"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular" misplaced="YES">
+                                    <rect key="frame" x="227" y="20" width="146" height="40"/>
+                                    <mask key="constraints">
+                                        <include reference="PR6-2q-KwC"/>
+                                        <include reference="ZND-79-fUJ"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.90196079015731812" green="0.90196079015731812" blue="0.90196079015731812" alpha="1" colorSpace="calibratedRGB"/>
@@ -311,7 +312,6 @@
                                 <exclude reference="n9f-XB-eyY"/>
                                 <exclude reference="dFI-7n-45A"/>
                                 <exclude reference="qoC-qj-qPd"/>
-                                <exclude reference="eFX-pt-cNh"/>
                                 <exclude reference="S7I-mv-eYd"/>
                                 <exclude reference="zfK-nj-E5o"/>
                                 <exclude reference="gm6-SF-qGo"/>
@@ -320,6 +320,7 @@
                                 <exclude reference="QSG-vf-ktq"/>
                                 <exclude reference="7uq-3a-y7L"/>
                                 <exclude reference="dwq-9a-rNS"/>
+                                <exclude reference="eFX-pt-cNh"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="HWA-K3-gQr"/>
@@ -377,7 +378,6 @@
                                 <include reference="n9f-XB-eyY"/>
                                 <include reference="dFI-7n-45A"/>
                                 <include reference="qoC-qj-qPd"/>
-                                <include reference="eFX-pt-cNh"/>
                                 <include reference="S7I-mv-eYd"/>
                                 <include reference="zfK-nj-E5o"/>
                                 <include reference="gm6-SF-qGo"/>
@@ -386,6 +386,7 @@
                                 <include reference="QSG-vf-ktq"/>
                                 <include reference="7uq-3a-y7L"/>
                                 <include reference="dwq-9a-rNS"/>
+                                <include reference="eFX-pt-cNh"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="HWA-K3-gQr"/>

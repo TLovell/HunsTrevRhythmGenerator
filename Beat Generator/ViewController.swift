@@ -142,7 +142,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func randomGenerate1() {
+    func randomGenerate() {
         var beatLevelAssignment : [Int] = []
         for beat in 1...beatCount { //Procedurally generates an array of integers that represent the "Level" value of each beat in the exercise, which will all be less than the level Variable.
             var rng : Int
@@ -275,27 +275,27 @@ class ViewController: UIViewController {
         wrongTouches = 0
     }
     
-    func randomGenerate() {
-        var beat = 0
-        for count in 1...(beatCount * subDivision) {
-            if beat != 0 {
-                beat = Int(arc4random_uniform(3))
-            } else {
-                beat = Int(arc4random_uniform(2))
-            }
-            generatedBeat.append(beat)
-        }
-        for beat in generatedBeat {
-            generatedString.append(String(beat))
-        }
-        for count in 1...(beatCount-1) {
-            var reverseCount = beatCount - count
-            generatedString.insert(" ", atIndex: (reverseCount * subDivision))
-        }
-        for integer in generatedString {
-            theOutput.text! += integer
-        }
-    }
+//    func randomGenerate() {
+//        var beat = 0
+//        for count in 1...(beatCount * subDivision) {
+//            if beat != 0 {
+//                beat = Int(arc4random_uniform(3))
+//            } else {
+//                beat = Int(arc4random_uniform(2))
+//            }
+//            generatedBeat.append(beat)
+//        }
+//        for beat in generatedBeat {
+//            generatedString.append(String(beat))
+//        }
+//        for count in 1...(beatCount-1) {
+//            var reverseCount = beatCount - count
+//            generatedString.insert(" ", atIndex: (reverseCount * subDivision))
+//        }
+//        for integer in generatedString {
+//            theOutput.text! += integer
+//        }
+//    }
     
     func initiateExercise() {
         rightTouches = 0
@@ -315,7 +315,7 @@ class ViewController: UIViewController {
     
     @IBAction func theButton(sender: UIButton) {
         resetExercise()
-        randomGenerate1()
+        randomGenerate()
         initiateExercise()
         getAnswer()
     }
