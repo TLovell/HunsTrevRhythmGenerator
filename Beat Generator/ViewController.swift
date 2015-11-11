@@ -117,7 +117,7 @@ class ViewController: UIViewController {
             time.invalidate()
             enableButtons()
             exerciseRunning = false
-            println(recordedTaps)
+            print(recordedTaps)
             checkAnswer()
         default:
             break;
@@ -127,14 +127,14 @@ class ViewController: UIViewController {
     func checkTap(tapTime : Double) {
         var onBeat = false
         for note in answerDraft {
-            var difference = tapTime - note
+            let difference = tapTime - note
             if difference > -0.1 && difference < 0.2 && onBeat == false {
                 onBeat = true
-                answerDraft.removeAtIndex(find(answerDraft, note)!)
+                answerDraft.removeAtIndex(answerDraft.indexOf(note)!)
             }
         }
-        println(onBeat)
-        println(tapTime)
+        print(onBeat)
+        print(tapTime)
         if onBeat == true {
             rightTouches += 1
         } else {
@@ -144,7 +144,7 @@ class ViewController: UIViewController {
     
     func randomGenerate() {
         var beatLevelAssignment : [Int] = []
-        for beat in 1...beatCount { //Procedurally generates an array of integers that represent the "Level" value of each beat in the exercise, which will all be less than the level Variable.
+        for _ in 1...beatCount { //Procedurally generates an array of integers that represent the "Level" value of each beat in the exercise, which will all be less than the level Variable.
             var rng : Int
             if level == 1 {
                 beatLevelAssignment.append(1)
@@ -163,7 +163,7 @@ class ViewController: UIViewController {
 //        var currentLevelCount = Int(intensity * 10.0 * Double(beatCount)) - (Int(intensity * 10.0 * Double(beatCount)) % 10)
         if currentLevelCount > 0 {
             var currentLevelPlacement : [Int] = []
-            for i in 1...currentLevelCount { //Decides where in the exercise these current level beats will be placed
+            for _ in 1...currentLevelCount { //Decides where in the exercise these current level beats will be placed
                 var rng : Int = Int(arc4random_uniform(UInt32(beatCount)))
                 while (currentLevelPlacement.filter { $0 == rng }).count > 0 {
                     rng = Int(arc4random_uniform(UInt32(beatCount)))
@@ -175,12 +175,12 @@ class ViewController: UIViewController {
                 beatLevelAssignment.insert(level, atIndex: placement)
             }
         }
-        println(beatLevelAssignment)
+        print(beatLevelAssignment)
         for levelAssignment in beatLevelAssignment { //Creates the index necessary to use the dictionary "beatSources", then selects one of the returned arrays of beat values at random and appends it to an array of strings: beatCollection.
-            var sourceIndex : String = "\(subDivision)\(levelAssignment)"
+            let sourceIndex : String = "\(subDivision)\(levelAssignment)"
             if beatSources[sourceIndex] != nil {
                 let arraySource = beatSources[sourceIndex]!
-                var rng = Int(arc4random_uniform(UInt32(arraySource.count)))
+                let rng = Int(arc4random_uniform(UInt32(arraySource.count)))
                 beatCollection.append(arraySource[rng])
             } else {
                 var i = levelAssignment
@@ -190,21 +190,21 @@ class ViewController: UIViewController {
                     sampleIndex = "\(subDivision)\(levelAssignment)"
                 }
                 let arraySource = beatSources[sampleIndex]!
-                var rng = Int(arc4random_uniform(UInt32(arraySource.count)))
+                let rng = Int(arc4random_uniform(UInt32(arraySource.count)))
                 beatCollection.append(arraySource[rng])
             }
         }
-        println(beatCollection)
+        print(beatCollection)
         var combinedString : String = ""
         for beat in beatCollection {
             combinedString += beat
         }
-        generatedString = map(combinedString) { String($0) }
+        generatedString = combinedString.characters.map { String($0) }
         var stringIndex = 0
         var previousString : String = ""
         for string in generatedString { //Changes some of the 0s in the generated exercise to 2s (only if its preceeded by a 1 or 2)
             if (previousString == "1" || previousString == "2") && string == "0" {
-                var rng = arc4random_uniform(2)
+                let rng = arc4random_uniform(2)
                 if rng == 1 {
                     generatedString.removeAtIndex(stringIndex)
                     generatedString.insert("2", atIndex: stringIndex)
@@ -218,12 +218,12 @@ class ViewController: UIViewController {
             stringIndex += 1
         }
         for string in generatedString { // Outputs the generatedBeat array
-            generatedBeat.append(string.toInt()!)
+            generatedBeat.append(Int(string)!)
         }
-        println(generatedString)
-        println(generatedBeat)
+        print(generatedString)
+        print(generatedBeat)
         for count in 1...(beatCount-1) { //adds spaces in the string output for readability
-            var reverseCount = beatCount - count
+            let reverseCount = beatCount - count
             generatedString.insert(" ", atIndex: (reverseCount * subDivision))
         }
         for integer in generatedString { //outputs the exercise to the UI
@@ -233,7 +233,7 @@ class ViewController: UIViewController {
     
     func areaTouched() {
         if exerciseRunning == true {
-            var currentTime = NSDate.timeIntervalSinceReferenceDate()
+            let currentTime = NSDate.timeIntervalSinceReferenceDate()
             recordedTaps.append(currentTime - startTime)
             checkTap(currentTime - startTime)
         }
@@ -248,23 +248,23 @@ class ViewController: UIViewController {
                 }
                 i += 1
             }
-            println(answer)
+            print(answer)
             answerDraft = answer
         }
     }
 
     func checkAnswer() {
         if rightTouches == answer.count && wrongTouches == 0 {
-            println("Correct Answer!")
+            print("Correct Answer!")
             evaluationLabel.text = "Correct!"
         } else {
-            println("Wrong Answer...")
+            print("Wrong Answer...")
             evaluationLabel.text = "Wrong..."
         }
     }
     
     func resetExercise() {
-        theOutput.text = " "
+        theOutput.text = ""
         generatedString = []
         generatedBeat = []
         answer = []
@@ -330,7 +330,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         areaTouched()
     }
 //    
