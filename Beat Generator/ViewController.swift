@@ -20,6 +20,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var theTryAgainOutlet: UIButton!
     @IBOutlet weak var theLevelLabel: UILabel!
     @IBOutlet weak var theIntensityLabel: UILabel!
+    @IBOutlet weak var theRandomizeOutlet: UIButton!
+    @IBOutlet weak var beatStepperOutlet: UIStepper!
+    @IBOutlet weak var subStepperOutlet: UIStepper!
+    @IBOutlet weak var tempoStepperOutlet: UIStepper!
+    @IBOutlet weak var levelStepperOutlet: UIStepper!
+    @IBOutlet weak var intensityStepperOutlet: UIStepper!
     
     var beatCount = 4
     var subDivision = 2
@@ -94,6 +100,7 @@ class ViewController: UIViewController {
     func enableButtons() {
         theButtonOutlet.enabled = true
         theTryAgainOutlet.enabled = true
+        theRandomizeOutlet.enabled = true
     }
     
     func tempo() {
@@ -136,9 +143,11 @@ class ViewController: UIViewController {
         print(onBeat)
         print(tapTime)
         if onBeat == true {
+            tapArea.backgroundColor = UIColor.greenColor()
             rightTouches += 1
         } else {
             wrongTouches += 1
+            tapArea.backgroundColor = UIColor.redColor()
         }
     }
     
@@ -239,6 +248,10 @@ class ViewController: UIViewController {
         }
     }
     
+    func areaReleased() {
+        tapArea.backgroundColor = UIColor.blueColor()
+    }
+    
     func getAnswer() {
         if !generatedBeat.isEmpty {
             var i = 1 * subDivision
@@ -274,29 +287,7 @@ class ViewController: UIViewController {
         rightTouches = 0
         wrongTouches = 0
     }
-    
-//    func randomGenerate() {
-//        var beat = 0
-//        for count in 1...(beatCount * subDivision) {
-//            if beat != 0 {
-//                beat = Int(arc4random_uniform(3))
-//            } else {
-//                beat = Int(arc4random_uniform(2))
-//            }
-//            generatedBeat.append(beat)
-//        }
-//        for beat in generatedBeat {
-//            generatedString.append(String(beat))
-//        }
-//        for count in 1...(beatCount-1) {
-//            var reverseCount = beatCount - count
-//            generatedString.insert(" ", atIndex: (reverseCount * subDivision))
-//        }
-//        for integer in generatedString {
-//            theOutput.text! += integer
-//        }
-//    }
-    
+
     func initiateExercise() {
         rightTouches = 0
         wrongTouches = 0
@@ -306,6 +297,7 @@ class ViewController: UIViewController {
         countOffLabel.text = String(beatCount*2)
         theButtonOutlet.enabled = false
         theTryAgainOutlet.enabled = false
+        theRandomizeOutlet.enabled = false
         currentBeat = beatCount*2
         let interval : Double = (60 / Double(tempoValue))
         timeStep = (interval / Double(subDivision))
@@ -325,6 +317,34 @@ class ViewController: UIViewController {
         getAnswer()
     }
     
+    @IBAction func theRandomizeButton(sender: AnyObject) {
+        beatStepperOutlet.value = Double(arc4random_uniform(3)) + 2.0
+        beatCount = Int(beatStepperOutlet.value)
+        beatValue.text = String(Int(beatStepperOutlet.value))
+        
+        subStepperOutlet.value = Double(arc4random_uniform(4)) + 1.0
+        subDivision = Int(subStepperOutlet.value)
+        subdivisionLabel.text = String(Int(subStepperOutlet.value))
+        
+        tempoStepperOutlet.value = (Double(arc4random_uniform(13)) + 6.0) * 10.0
+        tempoValue = Int(tempoStepperOutlet.value)
+        tempoLabel.text = String(Int(tempoStepperOutlet.value))
+        
+        levelStepperOutlet.value = Double(arc4random_uniform(4)) + 1
+        level = Int(levelStepperOutlet.value)
+        theLevelLabel.text = String(Int(levelStepperOutlet.value))
+        
+        intensityStepperOutlet.value = (Double(arc4random_uniform(10)) + 1.0) / 10.0
+        intensity = Double(intensityStepperOutlet.value)
+        theIntensityLabel.text = String(Double(intensityStepperOutlet.value))
+        
+        theTryAgainOutlet.enabled = false
+        resetExercise()
+        randomGenerate()
+        initiateExercise()
+        getAnswer()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -333,10 +353,10 @@ class ViewController: UIViewController {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         areaTouched()
     }
-//    
-//    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-//        areaTouched()
-//    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        areaReleased()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
