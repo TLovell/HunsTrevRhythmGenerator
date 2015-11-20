@@ -47,6 +47,9 @@ class ViewController: UIViewController {
     var answerDraft : [NSTimeInterval] = []
     var level = 1 
     var intensity = 0.5
+    var noteLengths : [Int] = []
+    var restLengths : [Int] = []
+    var beatTypeToggle : [Int] = []
     
 //    let sub1lev1 = [1, 0]
 //    
@@ -124,7 +127,7 @@ class ViewController: UIViewController {
             time.invalidate()
             enableButtons()
             exerciseRunning = false
-            print(recordedTaps)
+            //print(recordedTaps)
             checkAnswer()
         default:
             break;
@@ -140,8 +143,8 @@ class ViewController: UIViewController {
                 answerDraft.removeAtIndex(answerDraft.indexOf(note)!)
             }
         }
-        print(onBeat)
-        print(tapTime)
+        //print(onBeat)
+        //print(tapTime)
         if onBeat == true {
             tapArea.backgroundColor = UIColor.greenColor()
             rightTouches += 1
@@ -184,7 +187,7 @@ class ViewController: UIViewController {
                 beatLevelAssignment.insert(level, atIndex: placement)
             }
         }
-        print(beatLevelAssignment)
+        //print(beatLevelAssignment)
         for levelAssignment in beatLevelAssignment { //Creates the index necessary to use the dictionary "beatSources", then selects one of the returned arrays of beat values at random and appends it to an array of strings: beatCollection.
             let sourceIndex : String = "\(subDivision)\(levelAssignment)"
             if beatSources[sourceIndex] != nil {
@@ -203,7 +206,7 @@ class ViewController: UIViewController {
                 beatCollection.append(arraySource[rng])
             }
         }
-        print(beatCollection)
+        //print(beatCollection)
         var combinedString : String = ""
         for beat in beatCollection {
             combinedString += beat
@@ -229,8 +232,8 @@ class ViewController: UIViewController {
         for string in generatedString { // Outputs the generatedBeat array
             generatedBeat.append(Int(string)!)
         }
-        print(generatedString)
-        print(generatedBeat)
+        //print(generatedString)
+        //print(generatedBeat)
         for count in 1...(beatCount-1) { //adds spaces in the string output for readability
             let reverseCount = beatCount - count
             generatedString.insert(" ", atIndex: (reverseCount * subDivision))
@@ -261,7 +264,7 @@ class ViewController: UIViewController {
                 }
                 i += 1
             }
-            print(answer)
+            //print(answer)
             answerDraft = answer
         }
     }
@@ -274,6 +277,51 @@ class ViewController: UIViewController {
             print("Wrong Answer...")
             evaluationLabel.text = "Wrong..."
         }
+    }
+    
+    func exerciseOutput() {
+        var previousString = "0"
+        var previousInt = "3"
+        var lengthNote = 0
+        var lengthRest = 0
+        noteLengths = []
+        restLengths = []
+        for string in generatedString {
+            var initiate = false
+            if string != " " {
+                if (string == "0" && previousInt != "0") || string == "1" {
+                    initiate = true
+                }
+                if initiate == true {
+                    if previousInt == "0" {
+                        restLengths.append(lengthRest)
+                        beatTypeToggle.append(0)
+                    } else if previousInt != "3" {
+                        noteLengths.append(lengthNote)
+                        beatTypeToggle.append(1)
+                    }
+                    if string == "0" {
+                        lengthRest = 1
+                    } else { lengthNote = 1 }
+                } else {
+                    if string == "0" {
+                        lengthRest += 1
+                    } else { lengthNote += 1 }
+                }
+            previousInt = string
+            }
+            previousString = string
+        }
+        if previousInt == "0" {
+            restLengths.append(lengthRest)
+            beatTypeToggle.append(0)
+        } else {
+            noteLengths.append(lengthNote)
+            beatTypeToggle.append(1)
+        }
+        print("The note lengths are : \(noteLengths)")
+        print("The rest lengths are : \(restLengths)")
+        print("The order of rests and beats are : \(beatTypeToggle)")
     }
     
     func resetExercise() {
@@ -310,6 +358,7 @@ class ViewController: UIViewController {
         randomGenerate()
         initiateExercise()
         getAnswer()
+        exerciseOutput()
     }
     
     @IBAction func theTryAgainMethod(sender: UIButton) {
@@ -343,6 +392,7 @@ class ViewController: UIViewController {
         randomGenerate()
         initiateExercise()
         getAnswer()
+        exerciseOutput()
     }
     
     override func viewDidLoad() {
