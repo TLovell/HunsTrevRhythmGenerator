@@ -50,6 +50,8 @@ class ViewController: UIViewController {
     var noteLengths : [Int] = []
     var restLengths : [Int] = []
     var beatTypeToggle : [Int] = []
+    var lengthMaster : [Int] = []
+    var typeMaster : [Int] = []
     
 //    let sub1lev1 = [1, 0]
 //    
@@ -280,12 +282,13 @@ class ViewController: UIViewController {
     }
     
     func exerciseOutput() {
-        var previousString = "0"
         var previousInt = "3"
         var lengthNote = 0
         var lengthRest = 0
+        lengthMaster = []
         noteLengths = []
         restLengths = []
+        beatTypeToggle = []
         for string in generatedString {
             var initiate = false
             if string != " " {
@@ -310,7 +313,6 @@ class ViewController: UIViewController {
                 }
             previousInt = string
             }
-            previousString = string
         }
         if previousInt == "0" {
             restLengths.append(lengthRest)
@@ -322,6 +324,91 @@ class ViewController: UIViewController {
         print("The note lengths are : \(noteLengths)")
         print("The rest lengths are : \(restLengths)")
         print("The order of rests and beats are : \(beatTypeToggle)")
+        var iNote = 0
+        var iRest = 0
+        for type in beatTypeToggle {
+            if type == 1 {
+                lengthMaster.append(noteLengths[iNote])
+                iNote += 1
+            } else {
+                lengthMaster.append(restLengths[iRest])
+                iRest += 1
+            }
+        }
+        var sumLengths = 0
+        var sumSub = subDivision
+        var typeMaster : [Int] = []
+        var iType = 0
+//        var iLength = 0
+        var lengthOutput : [Int] = []
+        for length in lengthMaster {
+            sumLengths += length
+            var initialType = 0
+            if beatTypeToggle[iType] == 0 {
+                typeMaster.append(0)
+            } else {
+                typeMaster.append(1)
+                initialType = 1
+            }
+            iType += 1
+            
+            if sumLengths == sumSub {
+                sumSub += subDivision
+            }
+            if sumLengths <= sumSub {
+                lengthOutput.append(length)
+            }
+//            if sumLengths > sumSub {
+//                sumSub += subDivision
+//            }
+            var additiveLength = 0
+//            var iterations = 0
+            while sumLengths > sumSub {
+//                while sumLengths > sumSubCopy {
+//                    iterations += 1
+//                    let newAdditive = length
+//                    sumSubCopy += subDivision
+//                }
+                
+                var extendedType = 0
+                if initialType == 1 {
+                    extendedType = 2
+                }
+                typeMaster.append(extendedType)
+                let newAdditive = sumSub - (sumLengths - length + additiveLength)
+                lengthOutput.append(newAdditive)
+                additiveLength += newAdditive
+                
+                sumSub += subDivision
+                if sumLengths < sumSub {
+                    lengthOutput.append(sumLengths - (sumSub - subDivision))
+                }
+                if sumLengths == sumSub {
+                    lengthOutput.append(subDivision)
+                    sumSub += subDivision
+                }
+////                lengthMaster.insert(subDivision, atIndex: iLength)
+////                iLength += 1
+////                let replace = lengthMaster[iLength] - subDivision
+////                lengthMaster.removeAtIndex(iLength)
+////                lengthMaster.insert(replace, atIndex: iLength)
+////                sumSub += subDivision
+//////                if sumLengths < sumSub {
+//////                    if initialType == 0 {
+//////                        typeMaster.append(0)
+//////                    } else {
+//////                        typeMaster.append(2)
+//////                    }
+//////                    let replace = lengthMaster[iLength] - subDivision
+//////                    lengthMaster.insert(subDivision, atIndex: iLength)
+//////                    iLength += 1
+//////                    lengthMaster.removeAtIndex(iLength)
+//////                    lengthMaster.insert(replace, atIndex: iLength)
+////                }
+            }
+        }
+        print("The length Masters are : \(lengthOutput)")
+        print("The type Masters are :   \(typeMaster)")
     }
     
     func resetExercise() {
