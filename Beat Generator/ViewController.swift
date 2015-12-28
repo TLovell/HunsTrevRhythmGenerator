@@ -321,9 +321,6 @@ class ViewController: UIViewController {
             noteLengths.append(lengthNote)
             beatTypeToggle.append(1)
         }
-        print("The note lengths are : \(noteLengths)")
-        print("The rest lengths are : \(restLengths)")
-        print("The order of rests and beats are : \(beatTypeToggle)")
         var iNote = 0
         var iRest = 0
         for type in beatTypeToggle {
@@ -339,7 +336,6 @@ class ViewController: UIViewController {
         var sumSub = subDivision
         var typeMaster : [Int] = []
         var iType = 0
-//        var iLength = 0
         var lengthOutput : [Int] = []
         for length in lengthMaster {
             sumLengths += length
@@ -358,18 +354,8 @@ class ViewController: UIViewController {
             if sumLengths <= sumSub {
                 lengthOutput.append(length)
             }
-//            if sumLengths > sumSub {
-//                sumSub += subDivision
-//            }
             var additiveLength = 0
-//            var iterations = 0
             while sumLengths > sumSub {
-//                while sumLengths > sumSubCopy {
-//                    iterations += 1
-//                    let newAdditive = length
-//                    sumSubCopy += subDivision
-//                }
-                
                 var extendedType = 0
                 if initialType == 1 {
                     extendedType = 2
@@ -387,24 +373,6 @@ class ViewController: UIViewController {
                     lengthOutput.append(subDivision)
                     sumSub += subDivision
                 }
-////                lengthMaster.insert(subDivision, atIndex: iLength)
-////                iLength += 1
-////                let replace = lengthMaster[iLength] - subDivision
-////                lengthMaster.removeAtIndex(iLength)
-////                lengthMaster.insert(replace, atIndex: iLength)
-////                sumSub += subDivision
-//////                if sumLengths < sumSub {
-//////                    if initialType == 0 {
-//////                        typeMaster.append(0)
-//////                    } else {
-//////                        typeMaster.append(2)
-//////                    }
-//////                    let replace = lengthMaster[iLength] - subDivision
-//////                    lengthMaster.insert(subDivision, atIndex: iLength)
-//////                    iLength += 1
-//////                    lengthMaster.removeAtIndex(iLength)
-//////                    lengthMaster.insert(replace, atIndex: iLength)
-////                }
             }
         }
         print("The length Masters are : \(lengthOutput)")
