@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tempoStepperOutlet: UIStepper!
     @IBOutlet weak var levelStepperOutlet: UIStepper!
     @IBOutlet weak var intensityStepperOutlet: UIStepper!
+    @IBOutlet weak var metronomeOutlet: UIImageView!
     
     var beatCount = 4
     var subDivision = 2
@@ -34,6 +35,9 @@ class ViewController: UIViewController {
     var generatedString : [String] = []
     var startTime = NSTimeInterval()
     var time = NSTimer()
+    var timeoff = NSTimer()
+    var timeoffput = NSTimer()
+    var timeoffputcounter = 0
     var currentBeat : Int = 0
     var exerciseRunning = false
     var recordedTaps : [NSTimeInterval] = []
@@ -52,6 +56,7 @@ class ViewController: UIViewController {
     var beatTypeToggle : [Int] = []
     var lengthMaster : [Int] = []
     var typeMaster : [Int] = []
+    var tempoCount = 0
     
 //    let sub1lev1 = [1, 0]
 //    
@@ -109,31 +114,43 @@ class ViewController: UIViewController {
     }
     
     func tempo() {
+        metronomeOutlet.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+        tempoCount += 1
+        if tempoCount == (beatCount + 1) {
+            tempoCount = 1
+        }
+        countOffLabel.text = String(tempoCount)
         switch currentBeat {
-        case 3...(beatCount*2):
-            currentBeat -= 1
-            countOffLabel.text = String(currentBeat)
+        case 3:
+            countOffLabel.text = "Ready!"
         case 2:
-            currentBeat -= 1
+            countOffLabel.text = "Go!"
             exerciseRunning = true
             startTime = NSDate.timeIntervalSinceReferenceDate()
-            countOffLabel.text = "Ready!"
-        case (2-beatCount)...0:
-            currentBeat -= 1
-        case 1:
-            countOffLabel.text = "Go!"
-            currentBeat -= 1
         case (1-beatCount):
             currentBeat = 0
             countOffLabel.text = ""
             time.invalidate()
+            timeoff.invalidate()
+            timeoffput.invalidate()
             enableButtons()
             exerciseRunning = false
+            metronomeOutlet.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0)
             //print(recordedTaps)
             checkAnswer()
         default:
             break;
         }
+        currentBeat -= 1
+    }
+    
+    func tempoOffPut() {
+        if timeoffputcounter == 4 {
+            metronomeOutlet.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0)
+            print("offput fired")
+            timeoffputcounter = 0
+        }
+        timeoffputcounter += 1
     }
     
     func checkTap(tapTime : Double) {
@@ -148,11 +165,11 @@ class ViewController: UIViewController {
         //print(onBeat)
         //print(tapTime)
         if onBeat == true {
-            tapArea.backgroundColor = UIColor.greenColor()
+//            tapArea.backgroundColor = UIColor.greenColor()
             rightTouches += 1
         } else {
             wrongTouches += 1
-            tapArea.backgroundColor = UIColor.redColor()
+//            tapArea.backgroundColor = UIColor.redColor()
         }
     }
     
@@ -254,7 +271,7 @@ class ViewController: UIViewController {
     }
     
     func areaReleased() {
-        tapArea.backgroundColor = UIColor.blueColor()
+//        tapArea.backgroundColor = UIColor.blueColor()
     }
     
     func getAnswer() {
@@ -392,20 +409,24 @@ class ViewController: UIViewController {
     }
 
     func initiateExercise() {
+        timeoffputcounter = 0
         rightTouches = 0
         wrongTouches = 0
         evaluationLabel.text = ""
         recordedTaps = []
         answer = []
-        countOffLabel.text = String(beatCount*2)
+        countOffLabel.text = "1"
         theButtonOutlet.enabled = false
         theTryAgainOutlet.enabled = false
         theRandomizeOutlet.enabled = false
+        tempoCount = 1
         currentBeat = beatCount*2
         let interval : Double = (60 / Double(tempoValue))
         timeStep = (interval / Double(subDivision))
         time = NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: "tempo", userInfo: nil, repeats: true)
+        timeoffput = NSTimer.scheduledTimerWithTimeInterval(interval / 4.0, target: self, selector: "tempoOffPut", userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(time, forMode: NSRunLoopCommonModes)
+        NSRunLoop.currentRunLoop().addTimer(timeoffput, forMode: NSRunLoopCommonModes)
     }
     
     @IBAction func theButton(sender: UIButton) {
