@@ -27,6 +27,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var levelStepperOutlet: UIStepper!
     @IBOutlet weak var intensityStepperOutlet: UIStepper!
     @IBOutlet weak var metronomeOutlet: UIImageView!
+    @IBOutlet weak var beatIndicator: UIImageView!
     
     var beatCount = 4
     var subDivision = 2
@@ -57,6 +58,9 @@ class ViewController: UIViewController {
     var lengthMaster : [Int] = []
     var typeMaster : [Int] = []
     var tempoCount = 0
+    var metronomeColor = 0
+    var imageNames : [String] = []
+    var arrayOfImages: [UIImageView] = []
     
 //    let sub1lev1 = [1, 0]
 //    
@@ -115,6 +119,7 @@ class ViewController: UIViewController {
     
     func tempo() {
         metronomeOutlet.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+        metronomeColor = 240
         tempoCount += 1
         if tempoCount == (beatCount + 1) {
             tempoCount = 1
@@ -145,12 +150,8 @@ class ViewController: UIViewController {
     }
     
     func tempoOffPut() {
-        if timeoffputcounter == 4 {
-            metronomeOutlet.backgroundColor = UIColor(red: 200/255, green: 200/255, blue: 200/255, alpha: 1.0)
-            print("offput fired")
-            timeoffputcounter = 0
-        }
-        timeoffputcounter += 1
+        metronomeColor -= 4
+        metronomeOutlet.backgroundColor = UIColor(red: CGFloat(metronomeColor)/255, green: CGFloat(metronomeColor)/255, blue: CGFloat(metronomeColor)/255, alpha: 1.0)
     }
     
     func checkTap(tapTime : Double) {
@@ -162,8 +163,8 @@ class ViewController: UIViewController {
                 answerDraft.removeAtIndex(answerDraft.indexOf(note)!)
             }
         }
-        //print(onBeat)
-        //print(tapTime)
+//        print(onBeat)
+//        print(tapTime)
         if onBeat == true {
 //            tapArea.backgroundColor = UIColor.greenColor()
             rightTouches += 1
@@ -256,9 +257,6 @@ class ViewController: UIViewController {
         for count in 1...(beatCount-1) { //adds spaces in the string output for readability
             let reverseCount = beatCount - count
             generatedString.insert(" ", atIndex: (reverseCount * subDivision))
-        }
-        for integer in generatedString { //outputs the exercise to the UI
-            theOutput.text! += integer
         }
     }
     
@@ -394,6 +392,79 @@ class ViewController: UIViewController {
         }
         print("The length Masters are : \(lengthOutput)")
         print("The type Masters are :   \(typeMaster)")
+        imageNames = []
+        iType = 0
+        for length in lengthOutput {
+            var newName = ""
+            if typeMaster[iType] == 0 {
+                newName += "Rest "
+            } else {
+                newName += "Note "
+            }
+            iType += 1
+            if subDivision == 2 || subDivision == 3 {
+                if (length % 2) == 0 {
+                    let int = length / 2
+                    newName += "\(int)"
+                } else {
+                    newName += "\(length):2"
+                }
+            } else {
+                if (length % subDivision) == 0 {
+                    let int = length / subDivision
+                    newName += "\(int)"
+                } else if subDivision == 4 && length == 2 {
+                    newName += "1:2"
+                } else {
+                    newName += "\(length):\(subDivision)"
+                }
+            }
+            newName += ".png"
+            imageNames.append(newName)
+        }
+        if subDivision == 3 {
+            beatIndicator.image = UIImage(named: "Note 3:2.png")
+        } else {
+            beatIndicator.image = UIImage(named: "Note 1.png")
+        }
+        print(imageNames)
+        let screenWidth = UIScreen.mainScreen().bounds.width - 20
+        sumLengths = 0
+        for length in lengthOutput { sumLengths += length }
+        let subWidth = Int(screenWidth) / sumLengths
+        var subHeight = 0
+        switch subDivision {
+        case 1:
+            subHeight = (subWidth * 4) / 3
+        case 2:
+            subHeight = (subWidth * 4) / 3
+        case 3:
+            subHeight = (subWidth * 4) / 3
+        case 4:
+            subHeight = (subWidth * 100) / 39
+        default:
+            break
+        }
+        sumLengths = 0
+        var previousLength = 0
+        var index = 0
+        for length in lengthOutput {
+            createImage(imageNames[index], x: (subWidth * sumLengths) + 10, y: 20, w: (subWidth * length), h: subHeight)
+            if typeMaster[index] == 2 {
+                createImage("Tie.png", x: (sumLengths - previousLength) * subWidth + 10, y: 20 + subHeight, w: (subWidth * (previousLength)) + (subWidth/2), h: subHeight/3)
+            }
+            sumLengths += length
+            index += 1
+            previousLength = length
+        }
+    }
+    
+    func createImage(name: String, x: Int, y: Int, w: Int, h: Int) {
+        let image = UIImage(named: name)
+        let imageView = UIImageView(image: image!)
+        imageView.frame = CGRect(x: x, y: y, width: w, height: h)
+        view.addSubview(imageView)
+        arrayOfImages.append(imageView)
     }
     
     func resetExercise() {
@@ -406,9 +477,14 @@ class ViewController: UIViewController {
         evaluationLabel.text = ""
         rightTouches = 0
         wrongTouches = 0
+        for image in arrayOfImages {
+            image.removeFromSuperview()
+        }
+        arrayOfImages = []
     }
 
     func initiateExercise() {
+        metronomeColor = 240
         timeoffputcounter = 0
         rightTouches = 0
         wrongTouches = 0
@@ -424,7 +500,7 @@ class ViewController: UIViewController {
         let interval : Double = (60 / Double(tempoValue))
         timeStep = (interval / Double(subDivision))
         time = NSTimer.scheduledTimerWithTimeInterval(interval, target: self, selector: "tempo", userInfo: nil, repeats: true)
-        timeoffput = NSTimer.scheduledTimerWithTimeInterval(interval / 4.0, target: self, selector: "tempoOffPut", userInfo: nil, repeats: true)
+        timeoffput = NSTimer.scheduledTimerWithTimeInterval(interval / 10, target: self, selector: "tempoOffPut", userInfo: nil, repeats: true)
         NSRunLoop.currentRunLoop().addTimer(time, forMode: NSRunLoopCommonModes)
         NSRunLoop.currentRunLoop().addTimer(timeoffput, forMode: NSRunLoopCommonModes)
     }
