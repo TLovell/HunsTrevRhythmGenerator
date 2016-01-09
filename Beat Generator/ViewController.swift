@@ -28,6 +28,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var intensityStepperOutlet: UIStepper!
     @IBOutlet weak var metronomeOutlet: UIImageView!
     @IBOutlet weak var beatIndicator: UIImageView!
+    @IBOutlet weak var numeraterOutlet: UILabel!
+    @IBOutlet weak var denominatorOutlet: UILabel!
     
     var beatCount = 4
     var subDivision = 2
@@ -424,39 +426,34 @@ class ViewController: UIViewController {
         }
         if subDivision == 3 {
             beatIndicator.image = UIImage(named: "Note 3:2.png")
+            numeraterOutlet.text = "\(beatCount * 3)"
+            denominatorOutlet.text = "8"
         } else {
             beatIndicator.image = UIImage(named: "Note 1.png")
+            numeraterOutlet.text = "\(beatCount)"
+            denominatorOutlet.text = "4"
         }
         print(imageNames)
-        let screenWidth = UIScreen.mainScreen().bounds.width - 20
+        let screenOffput = Int((UIScreen.mainScreen().bounds.width)/8)
+        let screenWidth = screenOffput * 6
         sumLengths = 0
         for length in lengthOutput { sumLengths += length }
-        let subWidth = Int(screenWidth) / sumLengths
-        var subHeight = 0
-        switch subDivision {
-        case 1:
-            subHeight = (subWidth * 4) / 3
-        case 2:
-            subHeight = (subWidth * 4) / 3
-        case 3:
-            subHeight = (subWidth * 4) / 3
-        case 4:
-            subHeight = (subWidth * 100) / 39
-        default:
-            break
-        }
+        let subWidth = screenWidth / 16
+        let subDistance = screenWidth / sumLengths
+        let subHeight = (subWidth * 4) / 3
         sumLengths = 0
         var previousLength = 0
         var index = 0
         for length in lengthOutput {
-            createImage(imageNames[index], x: (subWidth * sumLengths) + 10, y: 20, w: (subWidth * length), h: subHeight)
+            createImage(imageNames[index], x: (subDistance * sumLengths) + (2*screenOffput), y: 60, w: subWidth, h: subHeight)
             if typeMaster[index] == 2 {
-                createImage("Tie.png", x: (sumLengths - previousLength) * subWidth + 10, y: 20 + subHeight, w: (subWidth * (previousLength)) + (subWidth/2), h: subHeight/3)
+                createImage("Tie.png", x: (sumLengths - previousLength) * subDistance + (2*screenOffput), y: 65 + subHeight, w: (subDistance * (previousLength)) + (subDistance/4), h: subHeight/3)
             }
             sumLengths += length
             index += 1
             previousLength = length
         }
+        
     }
     
     func createImage(name: String, x: Int, y: Int, w: Int, h: Int) {
